@@ -2,6 +2,7 @@
 
 import os
 import re
+import shutil
 
 # 1. Ask for address of dir A;
 # 2. Ask for address of dir B;
@@ -13,6 +14,7 @@ import re
 
 
 # Reference: https://zhuanlan.zhihu.com/p/56909212
+
 # 1&2;
 dest_folder = input("请输入准备寄送的文件夹")
 
@@ -22,11 +24,29 @@ res_folder = input("请输入含有所需文件的文件夹")
 
 
 def list_pdf_files(address_a):
+    pdf_files = []
     for rootpath, dirs, files in os.walk(address_a):
         for name in files:
-            match_obj = re.search(r"pdf$", name)
+            # match_obj = re.search(r"pdf$", name)
+            match_obj = re.search(r"py$", name)
             if match_obj:
-                print(os.path.join(rootpath, name))
+                # print(os.path.join(rootpath, name))
+                pdf_files.append(os.path.join(rootpath, name))
+    return (pdf_files)
 
 
-list_pdf_files(dest_folder)
+print(list_pdf_files(dest_folder))
+
+
+# 4. Go thru the list and search for the replacement file in the B folder;
+def find_rpl_files(lst):
+    # pass
+    file_pair = {}
+    for file_lmnt in lst:
+        for rootpath, dirs, files in os.walk(address_b):
+            for name in files:
+                match_obj = re.search(r'_smith', name)
+                if file_lmnt ==
+
+
+# 6. If confirmed, start copying and replacing the files;
